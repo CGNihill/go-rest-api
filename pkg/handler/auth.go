@@ -1,6 +1,19 @@
 package handler
 
-import "github.com/gin-gonic/gin"
+import (
+	"net/http"
 
-func (h *Handler) signUp(c *gin.Context) {}
+	todo "github.com/CGNihill/go-rest-api"
+	"github.com/gin-gonic/gin"
+)
+
+func (h *Handler) signUp(c *gin.Context) {
+	var input todo.User
+
+	if err := c.BindJSON(&input); err != nil {
+		newErrorResponse(c, http.StatusBadRequest, err.Error())
+		return
+	}
+}
+
 func (h *Handler) signIn(c *gin.Context) {}
